@@ -3,6 +3,9 @@ import dotenv from "dotenv"
 import dbConnect from "./config/db.js";
 import userRouter from "./routers/userRoute.js";
 import cors from "cors";
+
+
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -13,4 +16,6 @@ const startServer = async () => {
 };
 startServer()
 
+
 app.use("/api/users", userRouter);
+
