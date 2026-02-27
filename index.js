@@ -10,8 +10,16 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connect to database
-dbConnect();
+// Root route
+app.get("/", (req, res) => {
+  res.json({ message: "LMS Backend API is running" });
+});
+
+// Middleware to connect to database on each request (for serverless)
+app.use(async (req, res, next) => {
+  await dbConnect();
+  next();
+});
 
 app.use("/api/users", userRouter);
 
